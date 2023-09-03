@@ -27,6 +27,7 @@ app.post("/calculate", (req, res) => {
   const difference = Number(num1) - Number(num2);
   const product = Number(num1) * Number(num2);
   const quotient = Number(num1) / Number(num2);
+  res.render("results", { sum, difference, product, quotient });
 });
 
 // Start the server on port 4000
