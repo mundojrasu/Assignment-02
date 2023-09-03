@@ -14,28 +14,25 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 console.log("views", path.join(__dirname, "views"));
 
-// Create a data store for our student data
-debugger;
-let students = [];
-
-// The GET route for the form
-app.get("/StudentForm", (req, res) => {
-  // Render the form and pass in the current student data
-  debugger;
-  res.render("index", { students: students });
+//create a route for the home page
+//The GET route for the form
+app.get("/", (req, res) => {
+  res.render("index");
 });
 
-// The POST route for form submissions
-app.post("/StudentData", (req, res) => {
-  // Add the submitted student data to our data store
-  debugger;
-  students.push(req.body);
-
-  // Redirect back to the form
-  res.redirect("/StudentForm");
+//create a route for users to enter the numbers
+app.post("/calculate", (req, res) => {
+  const { num1, num2 } = req.body;
+  const sum = Number(num1) + Number(num2);
+  const difference = Number(num1) - Number(num2);
+  const product = Number(num1) * Number(num2);
+  const quotient = Number(num1) / Number(num2);
 });
 
-// Start the server on port 5000
-app.listen(5000, () => {
-  console.log("Server started at port 5000");
+// Start the server on port 4000
+// Note we are advertising the service on port 4000 and not 3000 this time
+var port = 4000;
+
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
 });
